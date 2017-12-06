@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace SerializationTest
@@ -8,31 +10,32 @@ namespace SerializationTest
     {
         static void Main(string[] args)
         {
-            //function.XMLSerialize();
             function.XMLDeserialize();
+
+            //function.XMLSerialize();
         }
     }
     public class function
     {
-        public static void XMLSerialize()
+        public static void XMLSerialize(TMAS t)
         {
-            //Person c = new Person("cyj");
-            //c.Courses = new Course[2];
-            //c.Courses[0] = new Course("英语", "交流工具");
-            //c.Courses[1] = new Course("数学", "自然科学");
-            //XmlSerializer xs = new XmlSerializer(typeof(Person));
-            //Stream stream = new FileStream("e:\\cyj.m", FileMode.Create, FileAccess.Write, FileShare.Read);
-            //xs.Serialize(stream, c);
-            //stream.Close();
+            Stream stream = new FileStream("e:\\new.tmas.m", FileMode.Create, FileAccess.Write, FileShare.Read);
+            //去除默认命名空间xmlns:xsd和xmlns:xsi
+            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+            XmlSerializer xs = new XmlSerializer(typeof(TMAS));
+            xs.Serialize(stream, t, ns);
+            stream.Close();
         }
+        
         public static void XMLDeserialize()
         {
             XmlSerializer xs = new XmlSerializer(typeof(TMAS));
-            Stream stream = new FileStream("E:\\bbb.tmas.m", FileMode.Open, FileAccess.Read, FileShare.Read);
+            Stream stream = new FileStream("e:\\000aaa.tmas.m", FileMode.Open, FileAccess.Read, FileShare.Read);
             TMAS m = xs.Deserialize(stream) as TMAS;
+            function.XMLSerialize(m);
             Console.ReadLine();
             stream.Close();
-            var uuid = Guid.NewGuid().ToString();
         }
     }    
 }
