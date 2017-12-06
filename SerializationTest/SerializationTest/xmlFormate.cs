@@ -8,60 +8,55 @@ namespace SerializationTest
     {
     }
 
-    [XmlRoot("TMAS")]
-    public class TMAS
-    {
-        [XmlElement(ElementName = "TMASProject")]
-        public TMASProject tmasp;
-
-        [XmlArray("DOModelCollection")]
-        public List<DOModule> domodules { get; set; }
-    }
+    [XmlRoot("TMASProject")]
     public class TMASProject
     {
-        [XmlElement(ElementName = "Version")]
+        [XmlAttribute("version")]
         public string Version
         { get; set; }
 
-        [XmlElement(ElementName = "ProjectID")]
+        [XmlAttribute("ProjectID")]
         public string ProjectID
         { get; set; }
 
-        [XmlElement(ElementName = "ProjectName")]
+        [XmlAttribute("ProjectName")]
         public string ProjectName
         { get; set; }
 
-        [XmlElement(ElementName = "ProjectType")]
+        [XmlAttribute("ProjectType")]
         public string ProjectType
         { get; set; }
 
-        [XmlElement(ElementName = "CreateTime")]
+        [XmlAttribute("CreateTime")]
         public string CreateTime
         { get; set; }
 
-        [XmlElement(ElementName = "CreateUnit")]
+        [XmlAttribute("CreateUnit")]
         public string CreateUnit
         { get; set; }
 
-        [XmlElement(ElementName = "CreatedVersion")]
+        [XmlAttribute("CreatedVersion")]
         public string CreatedVersion
         { get; set; }
 
-        [XmlElement(ElementName = "CreatedBy")]
+        [XmlAttribute("CreatedBy")]
         public string CreatedBy
         { get; set; }
 
-        [XmlElement(ElementName = "Note")]
+        [XmlAttribute("Note")]
         public string Note
         { get; set; }
 
-        [XmlElement(ElementName = "EditStatus")]
+        [XmlAttribute("EditStatus")]
         public string EditStatus
         { get; set; }
 
-        [XmlElement(ElementName = "TopID")]
+        [XmlAttribute("TopID")]
         public string TopID
         { get; set; }
+
+        [XmlArray("DOModelCollection")]
+        public List<DOModule> domodules { get; set; }
     }
 
     [XmlType(TypeName = "DOModule"), Serializable]
